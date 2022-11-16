@@ -4,8 +4,15 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+const cookieSession = require('cookie-session');
+
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+	app.use(cookieSession({
+		keys: ['asdfghj']
+	}));
 
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true })
